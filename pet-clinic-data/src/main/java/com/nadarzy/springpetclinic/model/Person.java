@@ -1,26 +1,25 @@
 package com.nadarzy.springpetclinic.model;
 
-public class Person {
+public class Person extends BaseEntity {
 
-    private String firstName;
-    private String lastname;
+  private String firstName;
+  private String lastname;
 
-    public Person() {
-    }
+  public Person() {}
 
-    public String getFirstName() {
-        return firstName;
-    }
+  public String getFirstName() {
+    return firstName;
+  }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
 
-    public String getLastname() {
-        return lastname;
-    }
+  public String getLastname() {
+    return lastname;
+  }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
+  public void setLastname(String lastname) {
+    this.lastname = lastname;
+  }
 }
