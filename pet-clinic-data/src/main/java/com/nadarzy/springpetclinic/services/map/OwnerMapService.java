@@ -1,12 +1,15 @@
 package com.nadarzy.springpetclinic.services.map;
 
 import com.nadarzy.springpetclinic.model.Owner;
-import com.nadarzy.springpetclinic.services.CrudService;
+import com.nadarzy.springpetclinic.services.OwnerService;
 
 import java.util.Set;
 
-public class OwnerMapService extends AbstractMapService<Owner, Long>
-    implements CrudService<Owner, Long> {
+public class OwnerMapService extends AbstractMapService<Owner, Long> implements OwnerService {
+  @Override
+  public Owner findByLastName(String lastName) {
+    return null;
+  }
 
   @Override
   public Set<Owner> findAll() {
