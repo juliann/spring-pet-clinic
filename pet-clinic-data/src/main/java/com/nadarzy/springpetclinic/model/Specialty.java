@@ -1,8 +1,11 @@
 package com.nadarzy.springpetclinic.model;
 
-import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
-public class Specialty extends BaseEntity implements Serializable {
+@Entity
+@Table(name = "specialties")
+public class Specialty extends BaseEntity {
 
   private String description;
 
