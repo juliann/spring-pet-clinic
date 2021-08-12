@@ -1,10 +1,7 @@
 package com.nadarzy.springpetclinic.bootstrap;
 
 import com.nadarzy.springpetclinic.model.*;
-import com.nadarzy.springpetclinic.services.OwnerService;
-import com.nadarzy.springpetclinic.services.PetTypeService;
-import com.nadarzy.springpetclinic.services.SpecialtyService;
-import com.nadarzy.springpetclinic.services.VetService;
+import com.nadarzy.springpetclinic.services.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -17,26 +14,28 @@ public class DataLoader implements CommandLineRunner {
   private final VetService vetService;
   private final PetTypeService petTypeService;
   private final SpecialtyService specialtyService;
+  private final VisitService visitService;
 
   public DataLoader(
       OwnerService ownerService,
       VetService vetService,
       PetTypeService petTypeService,
-      SpecialtyService specialtyService) {
+      SpecialtyService specialtyService,
+      VisitService visitService) {
     this.ownerService = ownerService;
     this.vetService = vetService;
     this.petTypeService = petTypeService;
-
     this.specialtyService = specialtyService;
+
+    this.visitService = visitService;
   }
 
   @Override
   public void run(String... args) throws Exception {
     int count = petTypeService.findAll().size();
-    if(count==0){loadData();}
-
-
-
+    if (count == 0) {
+      loadData();
+    }
   }
 
   private void loadData() {
@@ -97,7 +96,14 @@ public class DataLoader implements CommandLineRunner {
 
     ownerService.save(owner2);
 
-    System.out.println("loaded Onwers");
+    Visit catVisit = new Visit();
+    catVisit.setPet(eriasCat);
+    catVisit.setDescription("sneezy kitty");
+    catVisit.setDate(LocalDate.now());
+
+    visitService.save(catVisit);
+
+    System.out.println("loaded Owners");
 
     Vet vet1 = new Vet();
 
