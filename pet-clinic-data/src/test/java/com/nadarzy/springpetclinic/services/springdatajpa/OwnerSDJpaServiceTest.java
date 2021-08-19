@@ -31,14 +31,14 @@ class OwnerSDJpaServiceTest {
 
   @BeforeEach
   void setUp() {
-    returnOwner = Owner.builder().id(1L).lastname(lastName).build();
+    returnOwner = Owner.builder().id(1L).lastName(lastName).build();
   }
 
   @Test
   void findAll() {
     Set<Owner> ownerSet = new HashSet<>();
     ownerSet.add(returnOwner);
-    ownerSet.add(Owner.builder().id(2L).lastname("lastName").build());
+    ownerSet.add(Owner.builder().id(2L).lastName("lastName").build());
     when(ownerRepository.findAll()).thenReturn(ownerSet);
     Set<Owner> owners = service.findAll();
     assertNotNull(owners);
@@ -63,7 +63,7 @@ class OwnerSDJpaServiceTest {
 
   @Test
   void save() {
-    Owner owner = Owner.builder().id(1L).lastname("lastName").build();
+    Owner owner = Owner.builder().id(1L).lastName("lastName").build();
     when(ownerRepository.save(any())).thenReturn(returnOwner);
     Owner savedOwner = service.save(owner);
     assertNotNull(savedOwner);
@@ -85,10 +85,10 @@ class OwnerSDJpaServiceTest {
   @Test
   void findByLastName() {
 
-    when(ownerRepository.findByLastname(any())).thenReturn(returnOwner);
+    when(ownerRepository.findByLastName(any())).thenReturn(returnOwner);
 
     Owner smith = service.findByLastName(lastName);
-    assertEquals(lastName, smith.getLastname());
-    verify(ownerRepository).findByLastname(any());
+    assertEquals(lastName, smith.getLastName());
+    verify(ownerRepository).findByLastName(any());
   }
 }
