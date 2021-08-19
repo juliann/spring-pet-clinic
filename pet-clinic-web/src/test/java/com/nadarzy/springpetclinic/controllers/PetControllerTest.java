@@ -1,6 +1,7 @@
 package com.nadarzy.springpetclinic.controllers;
 
 import com.nadarzy.springpetclinic.model.Owner;
+import com.nadarzy.springpetclinic.model.Pet;
 import com.nadarzy.springpetclinic.model.PetType;
 import com.nadarzy.springpetclinic.services.OwnerService;
 import com.nadarzy.springpetclinic.services.PetService;
@@ -8,6 +9,7 @@ import com.nadarzy.springpetclinic.services.PetTypeService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.web.servlet.MockMvc;
@@ -29,7 +31,7 @@ public class PetControllerTest {
 
   @Mock PetTypeService petTypeService;
 
-  @Mock PetController petController;
+  @InjectMocks PetController petController;
 
   MockMvc mockMvc;
   Owner owner;
@@ -37,7 +39,7 @@ public class PetControllerTest {
 
   @BeforeEach
   void setUp() {
-    owner = Owner.builder().id(1l).build();
+    owner = Owner.builder().id(1L).build();
 
     petTypes = new HashSet<>();
     petTypes.add(PetType.builder().id(1L).name("Dog").build());
@@ -72,18 +74,19 @@ public class PetControllerTest {
     verify(petService).save(any());
   }
 
-  //    @Test
-  //    void initUpdateForm() throws Exception {
-  //        when(ownerService.findById(anyLong())).thenReturn(owner);
-  //        when(petTypeService.findAll()).thenReturn(petTypes);
-  //        when(petService.findById(anyLong())).thenReturn(Pet.builder().id(2L).build());
-  //
-  //        mockMvc.perform(get("/owners/1/pets/2/edit"))
-  //                .andExpect(status().isOk())
-  //                .andExpect(model().attributeExists("owner"))
-  //                .andExpect(model().attributeExists("pet"))
-  //                .andExpect(view().name("pets/createOrUpdatePetForm"));
-  //    }
+  @Test
+  void initUpdateForm() throws Exception {
+    when(ownerService.findById(anyLong())).thenReturn(owner);
+    when(petTypeService.findAll()).thenReturn(petTypes);
+    when(petService.findById(anyLong())).thenReturn(Pet.builder().id(2L).build());
+
+    mockMvc
+        .perform(get("/owners/1/pets/2/edit"))
+        .andExpect(status().isOk())
+        .andExpect(model().attributeExists("owner"))
+        .andExpect(model().attributeExists("pet"))
+        .andExpect(view().name("pets/createOrUpdatePetForm"));
+  }
 
   @Test
   void processUpdateForm() throws Exception {
