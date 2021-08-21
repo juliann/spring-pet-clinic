@@ -40,8 +40,8 @@ public class VetMapService extends AbstractMapService<Vet, Long> implements VetS
 
   @Override
   public Vet save(Vet vet) {
-    if (vet.getSpecialties().size() > 0) {
-      vet.getSpecialties()
+    if (vet.getSpecialities().size() > 0) {
+      vet.getSpecialities()
           .forEach(
               specialty -> {
                 if (specialty.getId() == null) {

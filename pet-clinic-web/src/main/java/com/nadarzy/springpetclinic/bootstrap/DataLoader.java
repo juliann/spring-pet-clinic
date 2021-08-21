@@ -109,7 +109,7 @@ public class DataLoader implements CommandLineRunner {
 
     vet1.setFirstName("Sam");
     vet1.setLastName("Sammington");
-    vet1.getSpecialties().add(savedRadiology);
+    vet1.getSpecialities().add(savedRadiology);
 
     vetService.save(vet1);
 
@@ -117,8 +117,8 @@ public class DataLoader implements CommandLineRunner {
 
     vet2.setFirstName("Mr");
     vet2.setLastName("Dr");
-    vet2.getSpecialties().add(savedRadiology);
-    vet2.getSpecialties().add(savedSurgery);
+    vet2.getSpecialities().add(savedRadiology);
+    vet2.getSpecialities().add(savedSurgery);
 
     vetService.save(vet2);
 
